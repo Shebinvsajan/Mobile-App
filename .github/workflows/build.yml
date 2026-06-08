@@ -20,14 +20,8 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Update cmdline-tools and install SDK 36
-        run: |
-          SDK_ROOT=${ANDROID_SDK_ROOT:-$ANDROID_HOME}
-          curl -sL "https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip" -o /tmp/cmdline-tools.zip
-          unzip -q /tmp/cmdline-tools.zip -d /tmp/
-          sudo rm -rf $SDK_ROOT/cmdline-tools/latest
-          sudo mv /tmp/cmdline-tools $SDK_ROOT/cmdline-tools/latest
-          $SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-36" "build-tools;36.0.0" || true
+      - name: Install Android SDK 36
+        run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-36" "build-tools;36.0.0" || true
         shell: bash
 
       - name: Setup Gradle
