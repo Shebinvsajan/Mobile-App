@@ -29,8 +29,12 @@ jobs:
         with:
           gradle-version: 9.3.1
 
-      - name: Decode keystore
-        run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > my-upload-key.jks
+      - name: Decode keystores
+        run: |
+          base64 --decode debug.keystore.base64 > debug.keystore
+          if [ -n "${{ secrets.KEYSTORE_BASE64 }}" ]; then
+            echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 --decode > my-upload-key.jks
+          fi
         shell: bash
 
       - name: Create .env file
