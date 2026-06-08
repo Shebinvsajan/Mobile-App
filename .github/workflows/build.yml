@@ -46,9 +46,7 @@ jobs:
         shell: bash
 
       - name: Create .env file
-        run: |
-          echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" > .env
-          echo "TMDB_READ_ACCESS_TOKEN=${{ secrets.TMDB_READ_ACCESS_TOKEN }}" >> .env
+        run: echo "TMDB_READ_ACCESS_TOKEN=${{ secrets.TMDB_READ_ACCESS_TOKEN }}" > .env
         shell: bash
 
       - name: Build Release APK
