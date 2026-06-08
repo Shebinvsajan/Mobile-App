@@ -25,9 +25,9 @@ jobs:
           SDK_ROOT=${ANDROID_SDK_ROOT:-$ANDROID_HOME}
           # Download latest cmdline-tools
           curl -sL "https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip" -o /tmp/cmdline-tools.zip
-          unzip -q /tmp/cmdline-tools.zip -d /tmp/cmdline-tools
-          mkdir -p $SDK_ROOT/cmdline-tools/latest
-          mv /tmp/cmdline-tools/cmdline-tools/* $SDK_ROOT/cmdline-tools/latest/
+          unzip -q /tmp/cmdline-tools.zip -d /tmp/
+          rm -rf $SDK_ROOT/cmdline-tools/latest
+          mv /tmp/cmdline-tools $SDK_ROOT/cmdline-tools/latest
           # Install SDK 36
           $SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-36" "build-tools;36.0.0" || true
         shell: bash
